@@ -12,4 +12,10 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
+COPY docker/php/entrypoint.sh /usr/local/bin/app-entrypoint
+RUN chmod +x /usr/local/bin/app-entrypoint
+
+ENTRYPOINT ["app-entrypoint"]
+CMD ["php-fpm"]
+
 EXPOSE 9000
