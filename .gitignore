@@ -1,0 +1,29 @@
+# Monorepo global ignore rules
+
+# Laravel backend: sensitive/local files
+laravel-backend/.env
+laravel-backend/.env.*
+!laravel-backend/.env.example
+laravel-backend/vendor/
+laravel-backend/.phpunit.result.cache
+
+# Laravel backend: generated runtime/cache/log artifacts
+laravel-backend/bootstrap/cache/*.php
+laravel-backend/storage/logs/
+!laravel-backend/storage/logs/.gitignore
+laravel-backend/storage/framework/views/*.php
+
+# Flutter frontend: generated/build artifacts
+flutter-frontend/.dart_tool/
+flutter-frontend/build/
+flutter-frontend/.flutter-plugins
+flutter-frontend/.flutter-plugins-dependencies
+flutter-frontend/.packages
+flutter-frontend/android/.gradle/
+flutter-frontend/android/local.properties
+flutter-frontend/ios/Flutter/ephemeral/
+flutter-frontend/ios/Flutter/Generated.xcconfig
+flutter-frontend/ios/Flutter/flutter_export_environment.sh
+flutter-frontend/macos/Flutter/ephemeral/
+flutter-frontend/linux/flutter/ephemeral/
+flutter-frontend/windows/flutter/ephemeral/
