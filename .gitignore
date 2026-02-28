@@ -1,0 +1,19 @@
+# Laravel backend generated files
+laravel-backend/.env
+laravel-backend/vendor/
+laravel-backend/node_modules/
+laravel-backend/storage/*.key
+laravel-backend/storage/logs/*.log
+laravel-backend/.phpunit.result.cache
+
+# Flutter generated files
+flutter-frontend/.dart_tool/
+flutter-frontend/build/
+flutter-frontend/.flutter-plugins
+flutter-frontend/.flutter-plugins-dependencies
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
