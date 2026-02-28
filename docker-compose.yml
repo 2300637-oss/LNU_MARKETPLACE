@@ -30,15 +30,29 @@ services:
     container_name: lnu_db
     environment:
       MARIADB_DATABASE: lnu_marketplace
-      MARIADB_USER: lnu_user
-      MARIADB_PASSWORD: lnu_pass
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin123
       MARIADB_ROOT_PASSWORD: rootpass
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - lnu_db_data:/var/lib/mysql
     networks:
       - lnu_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: lnu_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - lnu_net
+
 
 networks:
   lnu_net:
