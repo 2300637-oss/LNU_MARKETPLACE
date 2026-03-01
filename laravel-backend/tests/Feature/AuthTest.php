@@ -9,6 +9,7 @@ use App\Models\StudentVerification;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -277,6 +278,20 @@ class AuthTest extends TestCase
             ->assertJsonPath('data.user.student_id', '231239')
             ->assertJsonPath('data.user.status', 'approved')
             ->assertJsonPath('data.user.roles.0', 'user')
+            ->assertJsonStructure(['trace_id']);
+    }
+
+    public function test_unhandled_exception_returns_standard_500_envelope(): void
+    {
+        Route::middleware('api')->get('/api/v1/test/boom', function () {
+            throw new \RuntimeException('boom');
+        });
+
+        $this->getJson('/api/v1/test/boom')
+            ->assertStatus(500)
+            ->assertJsonPath('success', false)
+            ->assertJsonPath('message', 'Server error.')
+            ->assertJsonPath('errors', null)
             ->assertJsonStructure(['trace_id']);
     }
 
